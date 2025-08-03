@@ -21,6 +21,37 @@ But because MCP project has been dead since around MC 1.15, so I took them witho
 
 **USE AT YOUR OWN RISKS.**
 
+## Using
+
+```kotlin
+repositories {
+	// ...
+    maven {
+        name = "Elytra MCP"
+        url = uri("https://raw.githubusercontent.com/Taskeren/elytra-mcp/master/publishing/")
+    }
+}
+
+dependencies {
+	// technically, you can access the published zips in this way,
+	// but normally, you're not going to deal with this.
+	implementation("de.oceanlabs.mcp:mcp_stable:{VERSION}@zip")
+}
+```
+
+#### Unimined Example
+
+```kotlin
+unimined.minecraft {
+	// ...
+	mappings {
+		// use Elytra MCP version 1.0.0-elytra.
+		// don't forget to add the repository!
+		mcp("stable", "1.0.0-elytra")
+    }
+}
+```
+
 ## Publishing
 
 Execute the command below to publish it.
