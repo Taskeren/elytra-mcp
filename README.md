@@ -20,3 +20,11 @@ redistributable without permission from the MCP team.
 But because MCP project has been dead since around MC 1.15, so I took them without their permission.
 
 **USE AT YOUR OWN RISKS.**
+
+## Publishing
+
+Execute the command below to publish it.
+
+```bat
+.\publish.bat <VERSION_TO_PUBLISH>
+```

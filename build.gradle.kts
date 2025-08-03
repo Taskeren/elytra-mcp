@@ -37,6 +37,20 @@ publishing {
 			version = project.version.toString()
 		}
 	}
+	repositories {
+		maven {
+			name = "local"
+			url = uri("${project.rootDir}/publishing")
+		}
+	}
+}
+
+tasks.withType<PublishToMavenRepository>().configureEach {
+	doFirst {
+		if(project.version.toString() == "999") {
+			throw GradleException("Publishing in an invalid version ${project.version}.")
+		}
+	}
 }
 
 idea {
