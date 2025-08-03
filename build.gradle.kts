@@ -10,7 +10,7 @@ version = System.getenv("VERSION") ?: "999"
 
 val channel: String = "stable"
 
-tasks.register("mcpPack", Zip::class) {
+val mcpPackTask = tasks.register("mcpPack", Zip::class) {
 	group = "mcp"
 	description = "Packs the MCP folder to a ZIP file."
 
@@ -23,10 +23,15 @@ tasks.register("mcpPack", Zip::class) {
 	destinationDirectory = layout.buildDirectory
 }
 
+tasks.register("assemble") { // required for Jitpack
+	group = "build"
+	dependsOn(mcpPackTask)
+}
+
 publishing {
 	publications {
 		create<MavenPublication>("mcpPackZip") {
-			artifact(tasks.named("mcpPack"))
+			artifact(mcpPackTask)
 			groupId = project.group.toString()
 			artifactId = "mcp_${channel}"
 			version = project.version.toString()
